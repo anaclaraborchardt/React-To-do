@@ -30,15 +30,21 @@ const Input = (props) => {
                  <div class="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" 
                     htmlFor="name">Qual o seu nome?</label>
-                    <input type="text" onChange={inputChangeHandler}></input>
+                    <input type="text" onChange={inputChangeHandler}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
+                    leading-tight focus:outline-none focus:shadow-outline" 
+                    placeholder="Nome"></input>
                 </div>
                 <div class="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" 
                     htmlFor="name">Qual o número do cadastro ?</label>
-                    <input type="number" onChange={inputChangeHandlerNumber}></input>
+                    <input type="text" onChange={inputChangeHandlerNumber}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
+                    leading-tight focus:outline-none focus:shadow-outline" 
+                    placeholder="Cadastro"></input>
                 </div>
                 
-                <button class="bg-blue-500 hover:bg-blue-700 text-white 
+                <button className="bg-blue-500 hover:bg-blue-700 text-white 
                 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
                 type="button">Enviar</button>
                 <br></br>
