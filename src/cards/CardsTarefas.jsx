@@ -1,7 +1,9 @@
 import React from "react";
 import {useState, useRef} from "react"
+import CardsReturn from "./CardsReturn";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const CardsTarefas = (cards) => {
+const CardsTarefas = ({cards}) => {
 
     const nameInputRef = useRef();
     const categoryInputRef = useRef();
@@ -30,7 +32,7 @@ const CardsTarefas = (cards) => {
             category : categoryCardInput
         }
 
-        cards.onSaveData(dadosTarefa)
+    
 
         localStorage.setItem('dadosTarefa', JSON.stringify(dadosTarefa))
         console.log(dadosTarefa);
@@ -67,7 +69,9 @@ const CardsTarefas = (cards) => {
 
             <button type="submit">Salvar Tarefa</button>
         </form>
-        </div>
+        
+
+</div>
 
 
     )

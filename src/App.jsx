@@ -32,8 +32,10 @@ const App = () => {
         <Route path= "/" element={<Input />}></Route>
         <Route path="cardstarefas" element={<CardsTarefas
         />}></Route>
-        <Route path= "/cardsReturn" element={<CardsReturn onAddExpense={addExpenseHandler} />}
-        ></Route>
+        <Route
+                path="/cardsReturn"
+                element={<CardsReturn cards={expenses} onAddExpense={addExpenseHandler} />}
+              />
         <Route path="login" element={<Input />}></Route>
         <Route path="cadastro" element={<Formulario />}></Route>
       </Routes>
