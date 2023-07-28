@@ -1,23 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Formulario from './form/Formulario'
 import Header from './header/Header'
 import Input from './form/Input'
+import CardsTarefas from './cards/CardsTarefas'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Formulario from './form/Formulario'
+import CardsReturn from './cards/CardsReturn'
 
 const App = () => {
 
+  const INITIAL_EXPENSES = [
+    {id: '1', name:'ola', category:'done'}
+  ];   
+
+  const [expenses, setExpenses] = useState(INITIAL_EXPENSES)
+ 
+  const addExpenseHandler = expense => {
+    setExpenses ((prevExpense) => {
+      return [expense, ...prevExpense ]
+
+    })
+  };
+
+
+
   return (
     <div>
+      <BrowserRouter>
       <Header></Header>
-      <div className='tituloCadastro'>
-      <h1>Faça seu Cadastro</h1>
-      </div>
-      <Input></Input>
-
+      <Routes>
+        <Route path= "/" element={<Input />}></Route>
+        <Route path="cardstarefas" element={<CardsTarefas
+        />}></Route>
+        <Route path= "/cardsReturn" element={<CardsReturn onAddExpense={addExpenseHandler} />}
+        ></Route>
+        <Route path="login" element={<Input />}></Route>
+        <Route path="cadastro" element={<Formulario />}></Route>
+      </Routes>
+    </BrowserRouter>
     </div>
   )
 }
+
 
 export default App
