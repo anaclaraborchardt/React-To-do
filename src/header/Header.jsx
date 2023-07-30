@@ -29,7 +29,7 @@ const Header = () => {
                     <Link 
                     className="inline-block border border-white rounded hover:border-gray-200 
                     text-blue-500 hover:bg-gray-200 py-2 px-4"
-                    to="/cardsreturn">Tarefas Cadastradas</Link>
+                    to="/properties">Propriedades</Link>
                 </li>
             </ul>
         </nav>
