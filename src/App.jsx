@@ -8,7 +8,7 @@ import Formulario from "./form/Formulario";
 import PropertyAdding from "./properties/PropertyAdding";
 
 const App = () => {
-  const INITIAL_EXPENSES = [{ id: "1", name: "ola", category: "done" }];
+  const INITIAL_EXPENSES = [];
 
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
 

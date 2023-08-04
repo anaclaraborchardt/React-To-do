@@ -33,8 +33,7 @@ const Input = (cards) => {
 
         const enteredNameValue = nameInputRef.current.value
         const enteredNumberValue = numberInputRef.current.value
-        console.log(enteredNameValue)
-        console.log(enteredNumberValue)
+     
 
         const dadosUsuarioCadastrado = {
             nameEnteredInput: nameEnteredInput,

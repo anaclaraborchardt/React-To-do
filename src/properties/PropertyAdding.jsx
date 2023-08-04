@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useRef} from "react"
 
-const PropertyAdding = ({onSaveDataProperty}) => {
+const PropertyAdding = ({onSaveDataProperty, properties}) => {
     
     const nameInputRef = useRef();
     const typeInputRef = useRef();
@@ -65,6 +65,8 @@ const PropertyAdding = ({onSaveDataProperty}) => {
             <br></br>
             <button type="submit">Criar Propriedade</button> 
             </form>
+
+{/* Tem que adicionar o botão de PropertyAdding */}
         </div>
     )
 
