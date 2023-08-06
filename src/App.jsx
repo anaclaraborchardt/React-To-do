@@ -9,12 +9,20 @@ import PropertyAdding from "./properties/PropertyAdding";
 
 const App = () => {
   const INITIAL_EXPENSES = [];
+  const INITIAL_PROPERTIES = [];
 
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [properties, setProperties] = useState(INITIAL_PROPERTIES);
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpense) => {
       return [expense, ...prevExpense];
+    });
+  };
+
+  const addPropertyHandler = (property) => {
+    setProperties((prevProperty) => {
+      return [property, ...prevProperty];
     });
   };
 
@@ -30,7 +38,10 @@ const App = () => {
           />
           <Route path="login" element={<Input />} />
           <Route path="cadastro" element={<Formulario />} />
-          <Route path="properties" element={<PropertyAdding />} />
+          <Route
+            path="properties"
+            element={<PropertyAdding properties={properties} onSaveDataProperty={addPropertyHandler} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
