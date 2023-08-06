@@ -34,7 +34,7 @@ const App = () => {
           <Route path="/" element={<Input />} />
           <Route
             path="cardstarefas"
-            element={<CardsTarefas cards={expenses} onSaveData={addExpenseHandler} />}
+            element={<CardsTarefas properties={properties} cards={expenses} onSaveData={addExpenseHandler} />}
           />
           <Route path="login" element={<Input />} />
           <Route path="cadastro" element={<Formulario />} />

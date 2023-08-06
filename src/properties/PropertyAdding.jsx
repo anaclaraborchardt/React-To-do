@@ -1,5 +1,6 @@
 import React from "react";
 import {useState, useRef} from "react"
+import PropertyReturn from "./propertyReturn";
 
 const PropertyAdding = ({onSaveDataProperty, properties}) => {
     
@@ -66,7 +67,7 @@ const PropertyAdding = ({onSaveDataProperty, properties}) => {
             <button type="submit">Criar Propriedade</button> 
             </form>
 
-{/* Tem que adicionar o botão de PropertyAdding */}
+            <PropertyReturn properties={properties}></PropertyReturn>
         </div>
     )
 
