@@ -6,6 +6,7 @@ import CardsTarefas from "./cards/CardsTarefas";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Formulario from "./form/Formulario";
 import PropertyAdding from "./properties/PropertyAdding";
+import PropertiesCards from "./cards/PropertiesCards";
 
 const App = () => {
   const INITIAL_EXPENSES = [];
@@ -35,6 +36,7 @@ const App = () => {
           <Route
             path="cardstarefas"
             element={<CardsTarefas properties={properties} cards={expenses} onSaveData={addExpenseHandler} />}
+            // element={<PropertiesCards properties={properties} cards={expenses} onSaveData={addExpenseHandler} />}
           />
           <Route path="login" element={<Input />} />
           <Route path="cadastro" element={<Formulario />} />

@@ -51,6 +51,9 @@ const CardsTarefas = ({ onSaveData, cards, properties }) => {
       insert: insertCardInput,
     };
 
+    setCategoryCard('');
+    setNameCard('');
+
     localStorage.setItem("dadosTarefa", JSON.stringify(dadosTarefa));
     onSaveData(dadosTarefa);
     console.log(dadosTarefa);
