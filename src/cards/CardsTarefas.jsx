@@ -11,6 +11,7 @@ const CardsTarefas = ({ onSaveData, cards, properties }) => {
   const [categoryCardInput, setCategoryCard] = useState("");
   const [propertyCardInput, setPropertyCard] = useState("");
   const [insertCardInput, setInsertCard] = useState("");
+  const [expenses, setExpenses] = useState([]);
 
   const inputNameChangeHandler = (event) => {
     setNameCard(event.target.value);
@@ -50,6 +51,8 @@ const CardsTarefas = ({ onSaveData, cards, properties }) => {
       properties: propertyCardInput,
       insert: insertCardInput,
     };
+    setExpenses((prevExpenses) => [...prevExpenses, dadosTarefa]);
+
 
     setCategoryCard('');
     setNameCard('');
@@ -114,7 +117,7 @@ const CardsTarefas = ({ onSaveData, cards, properties }) => {
 
         <button type="submit">Salvar Tarefa</button>
       </form>
-      <CardsReturn cards={cards} />
+      <CardsReturn cards={expenses} />
     </div>
   );
 };

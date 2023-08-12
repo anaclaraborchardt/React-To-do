@@ -11,6 +11,7 @@ const Input = (cards) => {
     const [validnumberEnteredInput, setvalidNumberInput] = useState(false);
     //inicialmente esse input não é acionado, por isso é false
     const [numberTouched, setNumberTouched] = useState(false);
+    let formValido = false;
 
 
     const inputChangeHandler = (event) => {
@@ -30,11 +31,11 @@ const Input = (cards) => {
         }
     }
 
-    useEffect(() => {
-        if(validnumberEnteredInput){
+        if(validnumberEnteredInput && validpasswordEnteredInput){
             console.log("cadastro válido")
+            formValido = true;
         }
-    }, [validnumberEnteredInput])
+    
 
     const submitChangeHandler = (event) => {
         event.preventDefault();

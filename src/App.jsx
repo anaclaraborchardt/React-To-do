@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Formulario from "./form/Formulario";
 import PropertyAdding from "./properties/PropertyAdding";
 import PropertiesCards from "./cards/PropertiesCards";
+import CardsReturn from "./cards/CardsReturn";
 
 const App = () => {
   const INITIAL_EXPENSES = [];
@@ -16,14 +17,15 @@ const App = () => {
   const [properties, setProperties] = useState(INITIAL_PROPERTIES);
 
   const addExpenseHandler = (expense) => {
-    setExpenses((prevExpense) => {
-      return [expense, ...prevExpense];
+    setExpenses((prevExpenses) => {
+      return [{ ...expense, id: Math.random().toString() }, ...prevExpenses];
     });
   };
+  
 
   const addPropertyHandler = (property) => {
     setProperties((prevProperty) => {
-      return [property, ...prevProperty];
+      return [...property, ...prevProperty];
     });
   };
 
@@ -35,8 +37,13 @@ const App = () => {
           <Route path="/" element={<Input />} />
           <Route
             path="cardstarefas"
-            element={<CardsTarefas properties={properties} cards={expenses} onSaveData={addExpenseHandler} />}
-            // element={<PropertiesCards properties={properties} cards={expenses} onSaveData={addExpenseHandler} />}
+            element={
+              <CardsTarefas
+                properties={properties}
+                cards={expenses}
+                onSaveData={addExpenseHandler}
+              />
+            }
           />
           <Route path="login" element={<Input />} />
           <Route path="cadastro" element={<Formulario />} />
