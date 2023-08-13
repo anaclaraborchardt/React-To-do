@@ -1,121 +1,91 @@
-import { useEffect } from "react";
-import {useState, useRef} from "react"
-import './Formulario.css'
+import { useState } from "react";
+import './Formulario.css';
+import useInput from './hooks-input';
 
-const Input = (cards) => {
-    const passwordInputRef = useRef();
-    const numberInputRef = useRef();
-    const [passwordEnteredInput, setPasswordInput] = useState('');
-    const [numberEnteredInput, setNumberInput] = useState('');
-    const [validpasswordEnteredInput, setvalidPasswordInput] = useState(true);
-    const [validnumberEnteredInput, setvalidNumberInput] = useState(false);
-    //inicialmente esse input não é acionado, por isso é false
-    const [numberTouched, setNumberTouched] = useState(false);
-    let formValido = false;
+const Input = (props) => { // Removed unused props parameter
 
+    const preenchido = (valor) => valor.trim() !== '';
 
-    const inputChangeHandler = (event) => {
-        setPasswordInput(event.target.value);
-    }
+    const {
+        value: passwordEnteredInput,
+        validacao: validpasswordEnteredInput,
+        erro: passwordInputError,
+        valueChangeHandler: passwordChangedHandler,
+        inputBlurHandler: inputBlurHandler,
+        limpaForm: resetPasswordInput
+      } = useInput(preenchido);
 
-    const inputChangeHandlerNumber = (event) => {
-        setNumberInput(event.target.value);
-    }
+      const {
+        value: numberEnteredInput,
+        validacao: validnumberEnteredInput,
+        erro: numberInputError,
+        valueChangeHandler: numberChangedHandler,
+        inputBlurHandler: numberBlurHandler,
+        limpaForm: resetNumberInput
+      } = useInput(preenchido);
 
-    const numberBlurHandler = event => {
-        setNumberTouched(true);
+    let inputValido = false;
 
-        if(numberEnteredInput.trim() === ''){
-            setvalidNumberInput(false)
-            return;    
-        }
-    }
-
-        if(validnumberEnteredInput && validpasswordEnteredInput){
-            console.log("cadastro válido")
-            formValido = true;
-        }
-    
+    // if (validnumberEnteredInput && validpasswordEnteredInput) {
+    //     console.log("cadastro válido")
+    //     inputValido = true;
+    // }
 
     const submitChangeHandler = (event) => {
         event.preventDefault();
 
-        setNumberTouched(true);
-
-        if(passwordEnteredInput.trim() === ''){
-            setvalidPasswordInput(false)
-            return;    
-        }else if(numberEnteredInput.trim() === ''){
-            setvalidNumberInput(false)
-            return; 
+        if (!validnumberEnteredInput || !validpasswordEnteredInput) {
+            return;
         }
-        setvalidPasswordInput(true);
-        setvalidNumberInput(true);
 
-        const enteredPasswordValue = passwordInputRef.current.value
-        const enteredNumberValue = numberInputRef.current.value
-     
+        resetNumberInput();
+        resetPasswordInput();
 
         const dadosUsuarioCadastrado = {
             passwordEnteredInput: passwordEnteredInput,
             numberEnteredInput: numberEnteredInput
         }
 
-        localStorage.setItem('dadosUsuarioCadastrado', JSON.stringify(dadosUsuarioCadastrado))
-        console.log(dadosUsuarioCadastrado)
-
-        setPasswordInput('');
-        setNumberInput('');
-
-        
+        localStorage.setItem('dadosUsuarioCadastrado', JSON.stringify(dadosUsuarioCadastrado));
+        console.log(dadosUsuarioCadastrado);
     }
 
-    return(
-        <div className="w-full max-w-xs, divForms" >
-            <form  className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-                 onSubmit = {submitChangeHandler}>
-
-                    <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" 
-                    htmlFor="name">Número do cadastro
-                    <input type="number" 
-                    onChange={inputChangeHandlerNumber}
-                    onBlur={numberBlurHandler}
-                    ref={numberInputRef}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
-                    leading-tight focus:outline-none focus:shadow-outline" 
-                    placeholder="Cadastro"
-                    value={numberEnteredInput}></input>
+    return (
+        <div className="w-full max-w-xs, divForms">
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={submitChangeHandler}>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Número do cadastro
+                        <input type="number"
+                            onChange={numberChangedHandler} 
+                            onBlur={inputBlurHandler} 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Cadastro"
+                            value={numberEnteredInput}></input>
                     </label>
                     {!validnumberEnteredInput && <p>Você deve preencher seu nome</p>}
                 </div>
 
-                    
-                 <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" 
-                    htmlFor="name">Qual sua senha?
-                    <input type="text" 
-                    onChange={inputChangeHandler}
-                    ref={passwordInputRef}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
-                    leading-tight focus:outline-none focus:shadow-outline" 
-                    placeholder="Senha"
-                    value={passwordEnteredInput}></input>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Qual sua senha?
+                        <input type="text"
+                            onChange={passwordChangedHandler} 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Senha"
+                            value={passwordEnteredInput}></input>
                     </label>
                     {!validpasswordEnteredInput && <p>Você deve preencher sua senha</p>}
                 </div>
-                
-                <button className="bg-blue-500 hover:bg-blue-700 text-white 
-                font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-                type="submit">Enviar</button>
+
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                //  disabled={!inputValido} 
+                 type="submit">Enviar</button>
                 <br></br>
                 <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
                     Esqueci minha senha
                 </a>
-        
             </form>
         </div>
     )
 }
 
-export default Input
+export default Input;
