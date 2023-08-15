@@ -6,8 +6,6 @@ import CardsTarefas from "./cards/CardsTarefas";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Formulario from "./form/Formulario";
 import PropertyAdding from "./properties/PropertyAdding";
-import PropertiesCards from "./cards/PropertiesCards";
-import CardsReturn from "./cards/CardsReturn";
 
 const App = () => {
   const INITIAL_EXPENSES = [];
@@ -25,7 +23,7 @@ const App = () => {
 
   const addPropertyHandler = (property) => {
     setProperties((prevProperty) => {
-      return [...property, ...prevProperty];
+      return [property, ...prevProperty];
     });
   };
 

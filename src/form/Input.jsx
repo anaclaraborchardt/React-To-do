@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './Formulario.css';
-import useInput from './hooks-input';
+import useInput from '../hooks/hooks-input';
 
 const Input = (props) => { // Removed unused props parameter
 
@@ -62,7 +62,7 @@ const Input = (props) => { // Removed unused props parameter
                             placeholder="Cadastro"
                             value={numberEnteredInput}></input>
                     </label>
-                    {!validnumberEnteredInput && <p>Você deve preencher seu nome</p>}
+                    {!validnumberEnteredInput && <p>Você deve preencher seu cadastro</p>}
                 </div>
 
                 <div className="mb-4">
